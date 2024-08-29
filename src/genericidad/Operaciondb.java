@@ -49,7 +49,6 @@ public class Operaciondb {
         } 
     }
 
-    // Método para preparar una consulta SQL
     public static PreparedStatement prepareStatement(String query) {
         try {
             Connection con = ConexionGen.getCon();
@@ -60,7 +59,6 @@ public class Operaciondb {
         }
     }
 
-    // Método para obtener todos los IDs de las personas
     public static ResultSet getAllPersonIds() {
         String query = "SELECT id FROM DatosPersona";
         Connection con = null;
@@ -77,7 +75,6 @@ public class Operaciondb {
         }
     }
 
-    // Método para actualizar la edad de una persona
     public static void actualizarEdad(int personaId) {
         String query = "SELECT TIMESTAMPDIFF(YEAR, s.FechaNacimiento, CURDATE()) AS edad_calculada "
                 + "FROM SaludPersona s WHERE s.id = ?";

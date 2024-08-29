@@ -28,9 +28,9 @@ public class Genericidad {
                 Operaciondb.actualizarEdad(personaId);
             }
 
-            String nombre = "Paula Gomez";
-            Date fechaNacimiento = Date.valueOf("2001-09-11");
-            String eps = "La Nueva";
+            String nombre = "Jaime Zorro";
+            Date fechaNacimiento = Date.valueOf("2005-11-21");
+            String eps = "Famisanar";
             AgregarPersona.agregarPersona(nombre, fechaNacimiento, eps);
 
             stmt = con.createStatement();
