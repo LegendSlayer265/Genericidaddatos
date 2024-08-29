@@ -1,0 +1,2 @@
+Genericidad.Operaciondb
+Genericidad.ConexionGen
