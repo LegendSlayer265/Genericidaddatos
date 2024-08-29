@@ -6,7 +6,6 @@ package genericidad;
 
 import java.sql.Connection;
 import java.sql.Date;
-import genericidad.Operaciondb;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -21,21 +20,21 @@ public class Genericidad {
             con = Operaciondb.getConnection();
 
             Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT id FROM DatosPersona");
+            ResultSet rs = stmt.executeQuery("SELECT id FROM datospersona");
 
             while (rs.next()) {
                 int personaId = rs.getInt("id");
                 Operaciondb.actualizarEdad(personaId);
             }
 
-            String nombre = "Jaime Zorro";
-            Date fechaNacimiento = Date.valueOf("2005-11-21");
-            String eps = "Famisanar";
+            String nombre = "Paulo Garcia";
+            Date fechaNacimiento = Date.valueOf("2014-06-28");
+            String eps = "SaludCoop";
             AgregarPersona.agregarPersona(nombre, fechaNacimiento, eps);
 
             stmt = con.createStatement();
             rs = stmt.executeQuery(
-                "SELECT dp.Nombre, dp.Edad, sp.Eps " +
+                "SELECT dp.Nombre, dp.Edad, sp.Eps, sp.FechaNacimiento " +
                 "FROM DatosPersona dp " +
                 "JOIN SaludPersona sp ON dp.id = sp.id");
 
@@ -43,9 +42,10 @@ public class Genericidad {
                 String nombrePersona = rs.getString("Nombre");
                 int edad = rs.getInt("Edad");
                 String epsObtenido = rs.getString("Eps");
+                Date FechaNacimiento = rs.getDate("FechaNacimiento");
                 ModeloPair modeloPair = new ModeloPair();
                 Pair<Integer, String> Nombre = modeloPair.new Pair<>(edad, nombrePersona);
-                Pair<String, String> DatosPersona = modeloPair.new Pair<>(epsObtenido, nombrePersona);
+                Pair<String, Date> DatosPersona = modeloPair.new Pair<>(epsObtenido, FechaNacimiento);
                 System.out.println("Persona: " + Nombre.toString() + ", Datos adicionales: " + DatosPersona.toString());
             }
 
